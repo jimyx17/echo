@@ -963,6 +963,28 @@ func TestRouterMixedParams(t *testing.T) {
 	testRouterAPI(t, api2)
 }
 
+func TestRouterCaseInsensitive(t *testing.T) {
+	e := New()
+	e.EnableCaseInsensitive = true
+	r := e.router
+	path := "/folders/a/files/echo.gif"
+	r.Add(http.MethodGet, path, func(c Context) error {
+		c.Set("path", path)
+		return nil
+	})
+
+	c := e.NewContext(nil, nil).(*context)
+	r.Find(http.MethodGet, path, c)
+	c.handler(c)
+	assert.Equal(t, path, c.Get("path"))
+
+	pathUpper := strings.ToUpper(path)
+	c = e.NewContext(nil, nil).(*context)
+	r.Find(http.MethodGet, pathUpper, c)
+	c.handler(c)
+	assert.Equal(t, path, c.Get("path"))
+}
+
 func benchmarkRouterRoutes(b *testing.B, routes []*Route) {
 	e := New()
 	r := e.router
