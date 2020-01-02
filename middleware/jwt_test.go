@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/labstack/echo/v4"
+	"github.com/jimyx17/echo/v4"
 	"github.com/stretchr/testify/assert"
 )
 

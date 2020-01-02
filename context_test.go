@@ -7,7 +7,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"github.com/labstack/gommon/log"
+	"github.com/jimyx17/gommon/log"
 	"io"
 	"math"
 	"mime/multipart"
@@ -437,7 +437,7 @@ func TestContextCookie(t *testing.T) {
 	cookie = &http.Cookie{
 		Name:     "SSID",
 		Value:    "Ap4PGTEq",
-		Domain:   "labstack.com",
+		Domain:   "jimyx17.com",
 		Path:     "/",
 		Expires:  time.Now(),
 		Secure:   true,
@@ -446,7 +446,7 @@ func TestContextCookie(t *testing.T) {
 	c.SetCookie(cookie)
 	assert.Contains(rec.Header().Get(HeaderSetCookie), "SSID")
 	assert.Contains(rec.Header().Get(HeaderSetCookie), "Ap4PGTEq")
-	assert.Contains(rec.Header().Get(HeaderSetCookie), "labstack.com")
+	assert.Contains(rec.Header().Get(HeaderSetCookie), "jimyx17.com")
 	assert.Contains(rec.Header().Get(HeaderSetCookie), "Secure")
 	assert.Contains(rec.Header().Get(HeaderSetCookie), "HttpOnly")
 }
@@ -490,7 +490,7 @@ func TestContextPathParam(t *testing.T) {
 func TestContextFormValue(t *testing.T) {
 	f := make(url.Values)
 	f.Set("name", "Jon Snow")
-	f.Set("email", "jon@labstack.com")
+	f.Set("email", "jon@jimyx17.com")
 
 	e := New()
 	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(f.Encode()))
@@ -499,14 +499,14 @@ func TestContextFormValue(t *testing.T) {
 
 	// FormValue
 	testify.Equal(t, "Jon Snow", c.FormValue("name"))
-	testify.Equal(t, "jon@labstack.com", c.FormValue("email"))
+	testify.Equal(t, "jon@jimyx17.com", c.FormValue("email"))
 
 	// FormParams
 	params, err := c.FormParams()
 	if testify.NoError(t, err) {
 		testify.Equal(t, url.Values{
 			"name":  []string{"Jon Snow"},
-			"email": []string{"jon@labstack.com"},
+			"email": []string{"jon@jimyx17.com"},
 		}, params)
 	}
 
@@ -522,19 +522,19 @@ func TestContextFormValue(t *testing.T) {
 func TestContextQueryParam(t *testing.T) {
 	q := make(url.Values)
 	q.Set("name", "Jon Snow")
-	q.Set("email", "jon@labstack.com")
+	q.Set("email", "jon@jimyx17.com")
 	req := httptest.NewRequest(http.MethodGet, "/?"+q.Encode(), nil)
 	e := New()
 	c := e.NewContext(req, nil)
 
 	// QueryParam
 	testify.Equal(t, "Jon Snow", c.QueryParam("name"))
-	testify.Equal(t, "jon@labstack.com", c.QueryParam("email"))
+	testify.Equal(t, "jon@jimyx17.com", c.QueryParam("email"))
 
 	// QueryParams
 	testify.Equal(t, url.Values{
 		"name":  []string{"Jon Snow"},
-		"email": []string{"jon@labstack.com"},
+		"email": []string{"jon@jimyx17.com"},
 	}, c.QueryParams())
 }
 
@@ -578,10 +578,10 @@ func TestContextRedirect(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
-	testify.Equal(t, nil, c.Redirect(http.StatusMovedPermanently, "http://labstack.github.io/echo"))
+	testify.Equal(t, nil, c.Redirect(http.StatusMovedPermanently, "http://jimyx17.github.io/echo"))
 	testify.Equal(t, http.StatusMovedPermanently, rec.Code)
-	testify.Equal(t, "http://labstack.github.io/echo", rec.Header().Get(HeaderLocation))
-	testify.Error(t, c.Redirect(310, "http://labstack.github.io/echo"))
+	testify.Equal(t, "http://jimyx17.github.io/echo", rec.Header().Get(HeaderLocation))
+	testify.Error(t, c.Redirect(310, "http://jimyx17.github.io/echo"))
 }
 
 func TestContextStore(t *testing.T) {

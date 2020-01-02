@@ -8,8 +8,8 @@ Example:
   import (
     "net/http"
 
-    "github.com/labstack/echo/v4"
-    "github.com/labstack/echo/v4/middleware"
+    "github.com/jimyx17/echo/v4"
+    "github.com/jimyx17/echo/v4/middleware"
   )
 
   // Handler
@@ -32,7 +32,7 @@ Example:
     e.Logger.Fatal(e.Start(":1323"))
   }
 
-Learn more at https://echo.labstack.com
+Learn more at https://echo.jimyx17.com
 */
 package echo
 
@@ -58,7 +58,7 @@ import (
 	"github.com/labstack/gommon/color"
 	"github.com/labstack/gommon/log"
 	"golang.org/x/crypto/acme"
-	"golang.org/x/crypto/acme/autocert"
+	"golang.org/x/crypto/acme/autocert" 
 )
 
 type (
@@ -229,7 +229,7 @@ const (
 const (
 	// Version of Echo
 	Version = "4.1.11"
-	website = "https://echo.labstack.com"
+	website = "https://echo.jimyx17.com"
 	// http://patorjk.com/software/taag/#p=display&f=Small%20Slant&t=Echo
 	banner = `
    ____    __

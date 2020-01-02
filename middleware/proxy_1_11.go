@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/labstack/echo/v4"
+	"github.com/jimyx17/echo/v4"
 )
 
 func proxyHTTP(tgt *ProxyTarget, c echo.Context, config ProxyConfig) http.Handler {
